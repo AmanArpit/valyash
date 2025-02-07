@@ -482,11 +482,11 @@ body {
         const bouncingHeart = document.querySelector('.bouncing-heart');
         const bounceTextt = document.querySelector('.bounce-textt');
         // Function to create floating hearts
- document.addEventListener("click", function() {
-    var audio = document.getElementById("bg-music");
-    audio.play();
-});
-
+window.onload = () => {
+    let audio = document.getElementById("myAudio");
+    audio.muted = false; // Unmute after autoplay
+    audio.play().catch(error => console.log("Autoplay blocked:", error));
+  };
 
 
 // Function to create floating heart emojis
