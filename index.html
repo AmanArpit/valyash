@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
     <title>Valentine's Surprise</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
@@ -479,10 +482,12 @@ body {
         const bouncingHeart = document.querySelector('.bouncing-heart');
         const bounceTextt = document.querySelector('.bounce-textt');
         // Function to create floating hearts
- document.addEventListener("DOMContentLoaded", function() {
-        var audio = document.getElementById("bg-music");
-        audio.play().catch(error => console.log("Autoplay blocked:", error));
-    });
+ document.addEventListener("click", function() {
+    var audio = document.getElementById("bg-music");
+    audio.play();
+});
+
+
 
 // Function to create floating heart emojis
 function createHeart() {
