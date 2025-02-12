@@ -6,14 +6,14 @@
     <title>6-Frame Sequential Slideshow with Flip</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-        
+    
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
-
+    
         body {
             display: flex;
             justify-content: center;
@@ -24,7 +24,7 @@
             overflow: hidden;
             position: relative;
         }
-
+    
         .heart {
             position: absolute;
             font-size: 20px;
@@ -32,7 +32,7 @@
             animation: floatHearts 4s linear infinite;
             max-width: 90%;
         }
-
+    
         @keyframes floatHearts {
             0% {
                 transform: translateY(0) scale(0.8);
@@ -43,7 +43,7 @@
                 opacity: 0;
             }
         }
-
+    
         body::before {
             content: "";
             position: absolute;
@@ -53,7 +53,7 @@
             opacity: 0.2;
             z-index: -1;
         }
-
+    
         .slideshow-container {
             position: absolute;
             top: 10%;
@@ -67,14 +67,14 @@
             align-items: center;
             z-index: 2;
         }
-
+    
         .frame {
             width: 100%;
             height: 100%;
             perspective: 1000px;
             cursor: pointer;
         }
-
+    
         .frame-inner {
             position: relative;
             width: 100%;
@@ -82,12 +82,13 @@
             transition: transform 0.8s;
             transform-style: preserve-3d;
         }
-
+    
         .frame-inner.flipped {
             transform: rotateY(180deg);
         }
-
-        .frame-front, .frame-back {
+    
+        .frame-front,
+        .frame-back {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -95,17 +96,17 @@
             border-radius: 10px;
             overflow: hidden;
         }
-
+    
         .frame-front {
             background: rgba(255, 255, 255, 0.1);
             border: 3px solid rgba(255, 255, 255, 0.5);
             transition: all 0.3s ease;
         }
-
+    
         .frame:hover .frame-front {
             box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
         }
-
+    
         .frame-front img {
             width: 100%;
             height: 100%;
@@ -114,11 +115,11 @@
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
-
+    
         .frame-front img.active {
             opacity: 1;
         }
-
+    
         .frame-back {
             background: rgba(255, 255, 255, 0.9);
             transform: rotateY(180deg);
@@ -128,13 +129,13 @@
             padding: 20px;
             text-align: center;
         }
-
+    
         .frame-back span {
             font-family: 'Great Vibes', cursive;
             font-size: 24px;
             color: #ff4d88;
         }
-
+    
         .more-button {
             position: absolute;
             bottom: 10%;
@@ -148,12 +149,12 @@
             transition: 0.3s;
             z-index: 2;
         }
-
+    
         .more-button:hover {
             background: white;
             color: black;
         }
-
+    
         .footer {
             position: fixed;
             left: 0;
@@ -171,11 +172,11 @@
             border-top: 2px solid rgba(255, 255, 255, 0.3);
             z-index: 100;
         }
-
+    
         .footer span {
             animation: glow 2s infinite alternate;
         }
-
+    
         .play-music-button {
             position: absolute;
             bottom: 20%;
@@ -192,11 +193,32 @@
             z-index: 11;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-
+    
         .play-music-button:hover {
             background: rgba(255, 255, 255, 0.5);
         }
-
+        /* Tablet Styles */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .slideshow-container {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 1fr);
+                gap: 10px;
+                height: auto;
+                width: 90%;
+                top: 5%;
+            }
+    
+            .frame {
+                height: 200px;
+            }
+    
+            .frame-front img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        /* Mobile Styles */
         @media (max-width: 768px) {
             .slideshow-container {
                 grid-template-columns: 1fr;
@@ -204,49 +226,32 @@
                 height: 80vh;
                 overflow-y: scroll;
                 top: 5%;
-                scrollbar-width: none;  /* Firefox */
-                -ms-overflow-style: none;  /* Internet Explorer 10+ */
+                scrollbar-width: none;
+                /* Firefox */
+                -ms-overflow-style: none;
+                /* Internet Explorer 10+ */
             }
-            .slideshow-container::-webkit-scrollbar { /* WebKit */
+    
+            .slideshow-container::-webkit-scrollbar {
+                /* WebKit */
                 width: 0;
                 height: 0;
             }
-
+    
             .frame {
                 height: 250px;
             }
-
+    
             .more-button {
                 bottom: 5%;
             }
-
+    
             .play-music-button {
                 bottom: 15%;
             }
-
         }
-        @media (max-width: 1024px) and (min-width: 769px) {
-    .slideshow-container {
-        grid-template-columns: 1fr 1fr; /* Two columns for tablets */
-        grid-template-rows: repeat(3, 1fr); /* Adjust rows */
-        gap: 10px; /* Reduce gap */
-        height: auto; /* Allow height to adjust dynamically */
-        width: 90%;
-        top: 5%;
-    }
-
-    .frame {
-        height: 200px; /* Adjust frame height for tablets */
-    }
-
-    .frame-front img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Prevent image stretching */
-    }
-}
-
     </style>
+    
 </head>
 <body>
     <audio id="bg-music" loop preload="auto" style="display:none;">
