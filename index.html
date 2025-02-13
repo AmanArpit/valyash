@@ -172,39 +172,28 @@
     letter-spacing: 0.5px;
     transition: all 0.3s ease-in-out;
     
-    /* Critical Overflow Prevention */
+    /* Default truncation styles */
     overflow: hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Limit to 2 lines */
-    -webkit-box-orient: vertical;
-    max-height: 30px; /* Fixed max height */
-    line-height: 1.2;
-    word-break: break-word;
-    hyphens: auto;
+    white-space: nowrap;
+    max-height: 30px;
+    cursor: pointer; /* Indicate clickable */
 }
 
 @media screen and (max-width: 768px) {
     .polaroid-caption {
-        font-size: 6px; /* Smaller font size for tablet */
-        -webkit-line-clamp: 2;
-        max-height: 20px; /* Adjusted max height */
-        padding: 1px;
-        letter-spacing: 0.2px;
-        line-height: 1.1;
+        font-size: 8px;
+        max-height: 25px;
     }
 }
 
 @media screen and (max-width: 480px) {
     .polaroid-caption {
-        font-size: 5px; /* Even smaller font size for mobile */
-        -webkit-line-clamp: 2;
-        max-height: 16px; /* Further adjusted max height */
-        padding: 1px;
-        letter-spacing: 0.1px;
-        line-height: 1;
+        font-size: 7px;
+        max-height: 20px;
     }
 }
+
 
 
 
@@ -874,6 +863,49 @@ message.classList.add('active-message');
                 audio.play();
             }
         });
+
+        document.querySelectorAll('.polaroid').forEach(polaroid => {
+    const caption = polaroid.querySelector('.polaroid-caption');
+    
+    // Store original text
+    const originalText = caption.textContent;
+    let isFullText = false;
+
+    // Truncate text for mobile and tablet
+    const truncateText = (text, maxLength) => {
+        return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+    };
+
+    // Function to toggle text
+    const toggleText = () => {
+        if (!isFullText) {
+            // Show full text
+            caption.style.whiteSpace = 'normal';
+            caption.style.overflow = 'visible';
+            caption.style.textOverflow = 'clip';
+            caption.style.maxHeight = 'none';
+            caption.textContent = originalText;
+            isFullText = true;
+        } else {
+            // Revert to truncated text
+            caption.style.whiteSpace = 'nowrap';
+            caption.style.overflow = 'hidden';
+            caption.style.textOverflow = 'ellipsis';
+            caption.style.maxHeight = '30px';
+            caption.textContent = truncateText(originalText, window.innerWidth < 480 ? 20 : 30);
+            isFullText = false;
+        }
+    };
+
+    // Add click event
+    polaroid.addEventListener('click', toggleText);
+
+    // Initial truncation for smaller screens
+    if (window.innerWidth < 768) {
+        caption.textContent = truncateText(originalText, window.innerWidth < 480 ? 20 : 30);
+    }
+});
+
     </script>
 
     <footer class="footer">
