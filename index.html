@@ -165,7 +165,7 @@
         .polaroid-caption {
     text-align: center;
     padding: 1px;
-    font-size: 6px !important;  /* Extremely small font size */
+    font-size: 6px;  /* Extremely small font size */
     font-weight: bold;
     color: #ff4d88;
     text-transform: uppercase;
@@ -886,15 +886,8 @@ message.classList.add('active-message');
             }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-    const captions = document.querySelectorAll('.polaroid-caption');
-    captions.forEach(caption => {
-        const maxLength = window.innerWidth < 480 ? 20 : 30;
-        if (caption.textContent.length > maxLength) {
-            caption.textContent = caption.textContent.substring(0, maxLength) + '...';
-        }
-    });
-});
+       
+
 
     </script>
 
