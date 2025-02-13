@@ -6,17 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentine's Surprise</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    
-            position: absolute;
-            font-size: 20px;
-            color: red;
-            animation: floatHearts 4s linear infinite;
-        }
-
-        /* Floating Hearts Animation */
-        @keyframes floatHearts {
-            0% {
-                transform: <style>
+    <style>
+       
         /* Existing Styles (Keep as is) */
 
         /* Existing Styles (Keep as is) */
@@ -33,7 +24,17 @@
         }
 
         /* Floating Hearts */
-        .heart {translateY(0) scale(0.8);
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: red;
+            animation: floatHearts 4s linear infinite;
+        }
+
+        /* Floating Hearts Animation */
+        @keyframes floatHearts {
+            0% {
+                transform: translateY(0) scale(0.8);
                 opacity: 1;
             }
 
@@ -516,6 +517,8 @@
 
             .polaroid-caption {
                 font-size: 9px; /* Reduce caption font size for tablet */
+                padding: 3px; /* Reduce padding */
+                line-height: 1.2; /* Adjust line height for better readability */
             }
 
 
